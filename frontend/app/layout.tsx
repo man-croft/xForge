@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { WagmiProvider } from "wagmi";
+import { wagmiConfig } from "../config/wagmi";
+import dynamic from "next/dynamic";
+
+const Navbar = dynamic(() => import("../components/layout/navbar"), {
+  ssr: false,
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +34,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <WagmiProvider config={wagmiConfig}>
+          <Navbar />
+          {children}
+        </WagmiProvider>
       </body>
     </html>
   );

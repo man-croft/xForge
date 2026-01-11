@@ -1,65 +1,68 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="relative isolate min-h-screen overflow-hidden bg-gradient-to-br from-black via-zinc-900 to-red-900 px-6 py-16 text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.08),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.05),transparent_30%),radial-gradient(circle_at_50%_80%,rgba(255,255,255,0.06),transparent_25%)]" />
+      <section className="relative mx-auto flex max-w-5xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+        <div className="max-w-2xl space-y-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-red-200">
+            Multi-vault DeFi on Base
+          </p>
+          <h1 className="text-4xl font-semibold leading-tight sm:text-5xl">
+            Build, track, and automate ERC-4626 vaults with ForgeX.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+          <p className="text-lg text-zinc-200">
+            Launch compliant vaults, orchestrate allocations, and keep visibility on yield — all in one interface designed for Base.
+          </p>
+          <div className="flex flex-wrap gap-3">
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#"
+              className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:-translate-y-0.5 hover:shadow-lg"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
+              Create a vault
+            </a>
             <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#"
+              className="rounded-full border border-white/40 px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-white hover:bg-white/10"
             >
-              Learning
-            </a>{" "}
-            center.
+              View dashboard
+            </a>
+          </div>
+          <div className="flex flex-wrap gap-4 text-sm text-zinc-200">
+            <div className="rounded-full border border-white/15 px-4 py-2">Base mainnet (Chain ID 8453)</div>
+            <div className="rounded-full border border-white/15 px-4 py-2">ERC-4626 compliant</div>
+            <div className="rounded-full border border-white/15 px-4 py-2">Protocol allocations</div>
+          </div>
+        </div>
+        <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-red-200">Live snapshot</p>
+              <h2 className="text-xl font-semibold">Vault performance</h2>
+            </div>
+            <span className="rounded-full bg-green-400/20 px-3 py-1 text-xs font-semibold text-green-200">
+              +12.4% APY
+            </span>
+          </div>
+          <div className="mt-6 space-y-4 text-sm text-zinc-200">
+            <div className="flex items-center justify-between">
+              <span>Total assets</span>
+              <span className="font-semibold text-white">$128,400</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Vaults</span>
+              <span className="font-semibold text-white">5 active</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Protocol split</span>
+              <span className="font-semibold text-white">Aave / Compound / LP</span>
+            </div>
+          </div>
+          <div className="mt-6 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+          <p className="mt-4 text-xs text-zinc-300">
+            Demo data for layout preview. Connect your wallet to see real balances once integrations are enabled.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }

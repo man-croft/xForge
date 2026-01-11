@@ -57,26 +57,17 @@ This color scheme creates a modern, professional, and visually appealing interfa
 ## Quick Start
 
 ```bash
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
+nvm use                # uses Node 20.11.1 from .nvmrc
+npm install            # install deps
+npm run dev            # start Next dev server on http://localhost:3000
 ```
-
-Open [http://localhost:3000](http://localhost:3000) to view the app.
 
 ## Development
 
 ```bash
-# Type checking
-npm run type-check
-
-# Linting
-npm run lint
-
-# Build for production
-npm run build
+npm run lint           # Next lint
+npm run type-check     # Next type-check
+npm run build          # Production build
 ```
 
 ## Project Structure

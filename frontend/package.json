@@ -6,12 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    "type-check": "next type-check"
   },
   "dependencies": {
     "next": "16.0.6",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "ethers": "^6.13.2",
+    "viem": "^2.9.20",
+    "wagmi": "^2.13.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

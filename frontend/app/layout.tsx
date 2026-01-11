@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { WagmiProvider } from "wagmi";
+import { wagmiConfig } from "../config/wagmi";
+import dynamic from "next/dynamic";
+
+const Navbar = dynamic(() => import("../components/layout/navbar"), {
+  ssr: false,
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +20,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ForgeX | Multi-vault DeFi on Base",
-  description: "Build, track, and automate ERC-4626 vaults on Base with ForgeX.",
+  title: "ForgeX",
+  description: "ForgeX – multi-vault DeFi interface built on Base",
 };
 
 export default function RootLayout({
@@ -27,7 +34,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <WagmiProvider config={wagmiConfig}>
+          <Navbar />
+          {children}
+        </WagmiProvider>
       </body>
     </html>
   );

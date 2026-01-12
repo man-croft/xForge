@@ -199,11 +199,20 @@ contract VaultFactory is Ownable {
     //////////////////////////////////////////////////////////////*/
 
     /**
-     * @dev Register a new user with username and bio
-     * @param username The desired username (max 20 characters)
-     * @param bio The user's bio (max 30 characters, can be empty)
-     * @notice Users can only register once
-     * @notice Username cannot be empty and must be within length limits
+     * @notice Register a new user with username and bio
+     * @dev Stores user credentials on-chain for vault ownership tracking
+     * @param username The desired username (max 20 characters, must not be empty)
+     * @param bio The user's bio description (max 30 characters, can be empty)
+     * 
+     * Requirements:
+     * - User must not already be registered
+     * - Username must not be empty
+     * - Username length must be ≤ 20 characters
+     * - Bio length must be ≤ 30 characters
+     * 
+     * Emits a {UserRegistered} event
+     * 
+     * @custom:security Users can only register once to prevent duplicate registrations
      */
     function registerUser(string calldata username, string calldata bio) external {
         // Check if user is already registered
@@ -231,14 +240,19 @@ contract VaultFactory is Ownable {
     //////////////////////////////////////////////////////////////*/
 
     /**
-     * @dev Set the price feed for a supported asset
-     * @param asset The asset address
-     * @param feed The Chainlink price feed address
-     */
-    /**
-     * @dev Set the price feed for a supported asset
-     * @param asset The asset address
-     * @param feed The Chainlink price feed address
+     * @notice Set the Chainlink price feed for a supported asset
+     * @dev Only admins can set price feeds. Required before creating vaults for an asset
+     * @param asset The ERC-20 asset token address
+     * @param feed The Chainlink AggregatorV3Interface price feed address
+     * 
+     * Requirements:
+     * - Caller must be an admin
+     * - Asset address must not be zero
+     * - Feed address must not be zero
+     * 
+     * Emits a {PriceFeedUpdated} event
+     * 
+     * @custom:security Price feeds are critical for vault share valuation
      */
     function setAssetPriceFeed(address asset, address feed) external onlyAdmin {
         require(asset != address(0), "VaultFactory: asset is zero address");
@@ -253,13 +267,21 @@ contract VaultFactory is Ownable {
     //////////////////////////////////////////////////////////////*/
 
     /**
-     * @dev Create a new vault for a registered user
-     * @param asset The address of the underlying asset token
-     * @param name The name of the vault share token
-     * @param symbol The symbol of the vault share token
-     * @return vault The address of the created vault
-     * @notice User must be registered before creating a vault
-     * @notice Price feed must be set for the asset
+     * @notice Create a new ERC-4626 compliant vault for the caller
+     * @dev Deploys a new UserVault contract instance and tracks ownership
+     * @param asset The address of the underlying ERC-20 asset token
+     * @param name The name of the vault share ERC-20 token
+     * @param symbol The symbol of the vault share ERC-20 token
+     * @return vault The address of the newly created vault contract
+     * 
+     * Requirements:
+     * - Caller must be a registered user
+     * - Price feed must be configured for the asset
+     * 
+     * Emits a {VaultCreated} event
+     * 
+     * @custom:deployment Creates a new UserVault contract via `new` operator
+     * @custom:security Only registered users can create vaults
      */
     function createVault(
         address asset,

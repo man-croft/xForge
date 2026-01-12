@@ -184,7 +184,22 @@ contract UserVault is ERC20, IERC4626, Ownable {
     //////////////////////////////////////////////////////////////*/
 
     /**
-     * @inheritdoc IERC4626
+     * @notice Deposit assets into the vault and receive shares
+     * @dev Implements ERC-4626 deposit function with share minting
+     * @param assets The amount of underlying assets to deposit
+     * @param receiver The address that will receive the minted vault shares
+     * @return shares The amount of vault shares minted to the receiver
+     * 
+     * Requirements:
+     * - Vault must not be paused
+     * - Assets amount must be greater than 0
+     * - Receiver address must not be zero
+     * - Caller must have approved this vault to spend `assets` amount
+     * 
+     * Emits a {Deposit} event
+     * 
+     * @custom:calculation First deposit: shares = assets (1:1 ratio)
+     * @custom:calculation Subsequent: shares = (assets × totalSupply) ÷ totalAssets
      */
     function deposit(uint256 assets, address receiver) 
         external 
@@ -234,7 +249,24 @@ contract UserVault is ERC20, IERC4626, Ownable {
     }
 
     /**
-     * @inheritdoc IERC4626
+     * @notice Withdraw assets from the vault by burning shares
+     * @dev Implements ERC-4626 withdraw function with share burning
+     * @param assets The amount of underlying assets to withdraw
+     * @param receiver The address that will receive the withdrawn assets
+     * @param owner The address that owns the shares being burned
+     * @return shares The amount of vault shares burned from the owner
+     * 
+     * Requirements:
+     * - Vault must not be paused
+     * - Assets amount must be greater than 0
+     * - Receiver address must not be zero
+     * - Owner address must not be zero
+     * - If caller is not owner, must have sufficient allowance
+     * - Vault must have sufficient assets
+     * 
+     * Emits a {Withdraw} event
+     * 
+     * @custom:calculation shares = (assets × totalSupply) ÷ totalAssets (rounded up)
      */
     function withdraw(
         uint256 assets,

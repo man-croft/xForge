@@ -12,7 +12,7 @@ _(No completed issues yet - ready for contributions!)_
 
 ### Issue #1: Wallet Integration — Reown AppKit + Wagmi
 
-**Status:** ❌ PENDING  
+**Status:** ✅ COMPLETED  
 
 **Labels:** `frontend`, `wallet`, `infrastructure`  
 
@@ -24,12 +24,12 @@ Add wallet connection using Reown AppKit (WalletConnect) + Wagmi. Provide a `Nav
 
 **Acceptance Criteria:**
 
-- [ ] Users can connect with MetaMask and WalletConnect
-- [ ] Address displays in navbar
-- [ ] Network information displays (Base Mainnet)
-- [ ] Signer is available to send transactions
-- [ ] Disconnect functionality works
-- [ ] Network switching works (with proper prompts)
+- [x] Users can connect with MetaMask and WalletConnect
+- [x] Address displays in navbar
+- [x] Network information displays (Base Mainnet)
+- [x] Signer is available to send transactions
+- [x] Disconnect functionality works
+- [x] Network switching works (with proper prompts)
 
 **Implementation Notes:**
 

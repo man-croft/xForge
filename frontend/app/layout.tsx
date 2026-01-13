@@ -20,8 +20,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ForgeX",
-  description: "ForgeX – multi-vault DeFi interface built on Base",
+  title: "ForgeX – Multi-vault DeFi on Base",
+  description: "Build, track, and automate ERC-4626 vaults with ForgeX. Protocol allocations and real-time yield tracking on Base mainnet.",
+  viewport: "width=device-width, initial-scale=1",
+  themeColor: "#000000",
 };
 
 export default function RootLayout({
@@ -30,13 +32,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen antialiased`}
       >
         <WagmiProvider config={wagmiConfig}>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-black focus:shadow-lg">
+            Skip to main content
+          </a>
           <Navbar />
-          {children}
+          <main id="main-content">{children}</main>
         </WagmiProvider>
       </body>
     </html>
